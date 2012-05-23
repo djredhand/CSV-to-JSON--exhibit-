@@ -4,7 +4,7 @@ import sys
 
 def createDict(filename):    
     # Open the CSV  and read it
-    f = open( filename + '.csv', 'rU' )   
+    f = open( filename + '.csv', 'U' )   
     reader = csv.reader( f, delimiter= ',', quotechar='|' ) 
     
     # Parse the CSV and create a dict from it
@@ -18,7 +18,7 @@ def createDict(filename):
 
 def open_original_csv(filename):  
     # Open the original CSV
-    f = open( filename + '.csv', 'rU' )   
+    f = open( filename + '.csv', 'U' )   
     reader = csv.DictReader( f )
     original_csv = json.dumps( [row for row in reader] )
     return original_csv
