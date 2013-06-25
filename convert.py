@@ -1,5 +1,5 @@
 import csv  
-import simplejson as json # just to add a little formatting function
+import json # just to add a little formatting function
 import sys
 
 def createDict(filename):    
@@ -43,7 +43,7 @@ def main_json(original_csv,subject,comp_domain,core_comp):
         
         # create the core competency key/value
         if coreComp_id in core_comp:
-            row['Comp01'] = coreComp_id + ' ' + core_comp[coreComp_id]
+            row['Comp01'] = core_comp[coreComp_id]
         
         # test for blank subject id's and assign the subject names
         if subject_id in subject:    
@@ -60,16 +60,16 @@ def main_json(original_csv,subject,comp_domain,core_comp):
     filename = 'converted'
     items = dict() # need to wrap original_csv in an "items" object to make exhibit happy
     items['items'] = original_csv
-    j = json.dumps( items , sort_keys=True, indent= 2 * ' ' ) #make it look pretty
+    j = json.dumps( items , sort_keys=True, indent= 2 ) #make it look pretty
     f = open( filename + '.json', 'w')  
     f.write(j)  
     print "Converted JSON saved!"
     
 def main():
-    main_json(open_original_csv("csv/cep"),
-              createDict("csv/cep-data_subject_areas"),
-              createDict("csv/cep-data_compDomain"),
-              createDict("csv/cep-data_core_competency")
+    main_json(open_original_csv("csv/courses"),
+              createDict("csv/subject_area"),
+              createDict("csv/domain"),
+              createDict("csv/competency")
               )
 
  
